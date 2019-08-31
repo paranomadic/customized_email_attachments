@@ -11,15 +11,13 @@ import os
 import glob
 
 dfInvestors = pandas.read_csv("File.csv")
-# print dfInvestors.head()
-nInvestors = len(dfInvestors.index)
-print(nInvestors)
-print dfInvestors.index
+# Keep the Columns as 'Name', 'First Name' and 'Email'
 
+nInvestors = len(dfInvestors.index)
 countloop = 0
 
 for i in dfInvestors["First Name"]:
-	print(i)
+	print(i) #Helps you check where the code broke
 	fromaddr = "username@email.com"
 	toaddr = dfInvestors.loc[countloop,'Email']
 	print(toaddr)
@@ -28,14 +26,14 @@ for i in dfInvestors["First Name"]:
  
 	msg['From'] = fromaddr
 	msg['To'] = toaddr
-	msg['Subject'] = "Unit Statement for Q1-FY:2019-20"
+	msg['Subject'] = "My first customized email"
  
-	body1 = " Dear "+i+","/n
+	body1 = " Dear "+i+","/n #you can add more body
 	body = body1 
 
 	msg.attach(MIMEText(body, 'plain'))
  
-	filename = i+"_Unit statement_30.06.2019.pdf"
+	filename = i+"_Unit statement_30.06.2019.pdf" #Keep a standard file name where you can add name and store it in a folder
 	attachment = open("/Users/parasmalhotra/Desktop/Unit statement/Unit statement/"+filename, "rb")
  
 	part = MIMEBase('application', 'octet-stream')
